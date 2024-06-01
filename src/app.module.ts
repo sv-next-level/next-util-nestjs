@@ -1,11 +1,11 @@
 import { Module } from "@nestjs/common";
-
-import { AppService } from "@/app.service";
-import { ApiModule } from "@/app/api/api.module";
-import { AppController } from "@/app.controller";
-import { ApiController } from "@/app/api/api.controller";
 import { ConfigModule } from "@nestjs/config";
-import configuration, { validate } from "@/config";
+
+import { AppService } from "./app.service";
+import { ApiModule } from "./app/api/api.module";
+import { AppController } from "./app.controller";
+import configuration, { validate } from "./config";
+import { ApiController } from "./app/api/api.controller";
 
 @Module({
   imports: [
