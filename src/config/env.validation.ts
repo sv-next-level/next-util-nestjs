@@ -1,11 +1,19 @@
+import {
+  IsEnum,
+  IsNumber,
+  Max,
+  Min,
+  ValidationError,
+  validateSync,
+} from "class-validator";
+import { Logger } from "@nestjs/common";
 import { plainToInstance } from "class-transformer";
-import { IsEnum, IsNumber, Max, Min, validateSync } from "class-validator";
 
-import { ENVIRONMENT } from "@/common/env";
+import { ENV } from "@/ts/server/env";
 
-class EnvVariables {
-  @IsEnum(ENVIRONMENT)
-  NODE_ENV: ENVIRONMENT;
+class EnvValidationDTO {
+  @IsEnum(ENV)
+  NODE_ENV: ENV;
 
   @IsNumber()
   @Min(0)
@@ -14,15 +22,26 @@ class EnvVariables {
 }
 
 export function validate(config: Record<string, unknown>) {
-  const validatedConfig = plainToInstance(EnvVariables, config, {
+  const logger: Logger = new Logger("EnvValidation");
+
+  const validatedConfig = plainToInstance(EnvValidationDTO, config, {
     enableImplicitConversion: true,
   });
-  const errors = validateSync(validatedConfig, {
+  const errors: ValidationError[] = validateSync(validatedConfig, {
     skipMissingProperties: false,
   });
 
+  const validationMessage: string = "Validation error count: " + errors.length;
+  logger.verbose({
+    message: validationMessage,
+  });
+
   if (errors.length > 0) {
-    throw new Error(errors.toString());
+    logger.fatal({
+      message: "Environment validation failed!",
+    });
+    throw new Error(JSON.stringify(errors));
   }
+
   return validatedConfig;
 }

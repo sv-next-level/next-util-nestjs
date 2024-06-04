@@ -6,6 +6,7 @@ import { ApiModule } from "./app/api/api.module";
 import { AppController } from "./app.controller";
 import configuration, { validate } from "./config";
 import { ApiController } from "./app/api/api.controller";
+import { DatabaseModule } from "./db/mongo/database.module";
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ApiController } from "./app/api/api.controller";
       validate,
     }),
     ApiModule,
+    DatabaseModule,
   ],
   controllers: [ApiController, AppController],
   providers: [AppService],
