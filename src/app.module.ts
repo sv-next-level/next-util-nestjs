@@ -7,6 +7,7 @@ import { AppController } from "./app.controller";
 import configuration, { validate } from "./config";
 import { ApiController } from "./app/api/api.controller";
 import { DatabaseModule } from "./db/mongo/database.module";
+import { MongooseModelsModule } from "./db/mongo/mongoose-models.module";
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { DatabaseModule } from "./db/mongo/database.module";
     }),
     ApiModule,
     DatabaseModule,
+    MongooseModelsModule,
   ],
   controllers: [ApiController, AppController],
   providers: [AppService],
