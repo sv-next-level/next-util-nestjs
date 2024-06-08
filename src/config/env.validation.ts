@@ -9,7 +9,7 @@ import {
 import { Logger } from "@nestjs/common";
 import { plainToInstance } from "class-transformer";
 
-import { ENV } from "@/ts/server/env";
+import { ENV } from "@/common/server/env";
 
 class EnvValidationDTO {
   @IsEnum(ENV)
