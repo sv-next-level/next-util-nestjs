@@ -16,4 +16,4 @@ import { createMongooseConfigServiceClass } from "./mongoose-config.service";
 
   exports: [MongooseModule],
 })
-export class DatabaseModule {}
+export class MongooseDatabaseModule {}

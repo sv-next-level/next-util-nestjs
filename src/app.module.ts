@@ -6,8 +6,9 @@ import { ApiModule } from "./app/api/api.module";
 import { AppController } from "./app.controller";
 import configuration, { validate } from "./config";
 import { ApiController } from "./app/api/api.controller";
-import { DatabaseModule } from "./db/mongo/database.module";
+import { MongooseDatabaseModule } from "./db/mongo/database.module";
 import { MongooseModelsModule } from "./db/mongo/mongoose-models.module";
+import { RedisDatabaseModule } from "./db/redis/database.module";
 
 @Module({
   imports: [
@@ -19,8 +20,9 @@ import { MongooseModelsModule } from "./db/mongo/mongoose-models.module";
       validate,
     }),
     ApiModule,
-    DatabaseModule,
+    RedisDatabaseModule,
     MongooseModelsModule,
+    MongooseDatabaseModule,
   ],
   controllers: [ApiController, AppController],
   providers: [AppService],

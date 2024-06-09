@@ -42,3 +42,7 @@ export const MONGOOSE_DB_SCHEMA = {
     },
   ],
 };
+
+export enum REDIS_DB_CONNECTION {
+  MAIN = CONNECTION.TEST_MAIN,
+}
