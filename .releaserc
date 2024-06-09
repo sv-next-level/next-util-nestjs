@@ -1,0 +1,14 @@
+{
+  "branches": [
+    "master"
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    {
+      "releaseNotesGenerator": "@semantic-release/release-notes-generator",
+      "parserOpts": {
+        "preset": "angular"
+      }
+    }
+  ]
+}
