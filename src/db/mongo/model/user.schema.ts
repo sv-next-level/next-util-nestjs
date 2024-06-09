@@ -12,7 +12,7 @@ export class User {
     required: true,
     enum: [STUDENT_SCHEMA_NAME, TEACHER_SCHEMA_NAME],
   })
-  type: string;
+  kind: string;
 }
 
 export const USER_SCHEMA_NAME: string = User.name;

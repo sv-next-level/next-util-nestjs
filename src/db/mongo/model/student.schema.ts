@@ -4,8 +4,6 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
   timestamps: true,
 })
 export class Student {
-  // kind: string;
-
   @Prop({ type: Number, required: true })
   fee: number;
 }

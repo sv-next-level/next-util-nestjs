@@ -1,7 +1,6 @@
 import { Controller, Get, Logger } from "@nestjs/common";
 
 import { AppService } from "./app.service";
-import { RedisService } from "./db/redis/redis-config.service";
 
 @Controller()
 export class AppController {
