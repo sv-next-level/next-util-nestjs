@@ -25,7 +25,7 @@ import { REDIS_DB_CONNECTION } from "@/db/connection";
     ),
   ],
 
-  providers: [RedisService],
   exports: [RedisService],
+  providers: [RedisService],
 })
 export class RedisDatabaseModule {}

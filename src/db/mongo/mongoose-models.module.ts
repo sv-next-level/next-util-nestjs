@@ -14,5 +14,6 @@ import { MONGOOSE_DB_SCHEMA } from "@/db/connection";
     }),
   ],
   exports: [MongooseModule],
+  providers: [MongooseModule],
 })
 export class MongooseModelsModule {}
