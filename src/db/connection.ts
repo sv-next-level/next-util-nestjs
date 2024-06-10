@@ -16,7 +16,7 @@ export interface MongooseDbSchema {
 }
 
 export enum MONGOOSE_DB_CONNECTION {
-  MAIN = CONNECTION.TEST_MAIN,
+  MAIN = CONNECTION.TEST_CONN_MAIN,
 }
 
 export const MONGOOSE_DB_SCHEMA = {
@@ -44,5 +44,5 @@ export const MONGOOSE_DB_SCHEMA = {
 };
 
 export enum REDIS_DB_CONNECTION {
-  MAIN = CONNECTION.TEST_MAIN,
+  MAIN = CONNECTION.TEST_CONN_MAIN,
 }

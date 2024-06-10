@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Sagar-v4/next-util-nestjs.git"
+    "url": "https://github.com/sv-next-level/next-util-nestjs.git"
   },
   "scripts": {
     "cm": "cz",
