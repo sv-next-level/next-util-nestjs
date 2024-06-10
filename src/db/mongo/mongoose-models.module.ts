@@ -1,5 +1,5 @@
 import { Global, Module } from "@nestjs/common";
-import { MongooseModule } from "@nestjs/mongoose";
+import { ModelDefinition, MongooseModule } from "@nestjs/mongoose";
 
 import { MONGOOSE_DB_SCHEMA } from "@/db/connection";
 
@@ -7,7 +7,10 @@ import { MONGOOSE_DB_SCHEMA } from "@/db/connection";
 @Module({
   imports: [
     ...Object.entries(MONGOOSE_DB_SCHEMA).map(([connectionName, models]) => {
-      return MongooseModule.forFeature(models, connectionName);
+      return MongooseModule.forFeature(
+        models as ModelDefinition[],
+        connectionName
+      );
     }),
   ],
   exports: [MongooseModule],
