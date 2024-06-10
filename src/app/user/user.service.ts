@@ -6,8 +6,8 @@ import {
   USER_SCHEMA_NAME,
   UserDocument,
 } from "../../db/mongo/model/user.schema";
-import { MONGOOSE_DB_CONNECTION } from "@/db/connection";
-import { RedisService } from "@/db/redis/redis-config.service";
+import { MONGOOSE_DB_CONNECTION } from "../../db/connection";
+import { RedisService } from "../../db/redis/redis-config.service";
 
 @Injectable()
 export class UserService {

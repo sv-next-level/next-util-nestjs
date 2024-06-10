@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Logger, Post } from "@nestjs/common";
 import { UserService } from "./user.service";
-import { UserDocument } from "@/db/mongo/model/user.schema";
+import { UserDocument } from "../../db/mongo/model/user.schema";
 
 @Controller("user")
 export class UserController {
