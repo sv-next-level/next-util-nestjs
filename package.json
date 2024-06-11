@@ -1,8 +1,8 @@
 {
   "name": "next-util-nestjs",
   "version": "v1.1.0",
-  "description": "",
-  "author": "",
+  "description": "Nestjs template to start",
+  "author": "Sagar Variya",
   "private": true,
   "license": "UNLICENSED",
   "repository": {
@@ -24,17 +24,17 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "check-formats": "npm run prettier -- --list-different",
-    "clean": "rm -rf node_modules coverage dist .nyc_output && npm cache clean --force && npm run files_to_delete",
-    "validate": "yarn check-formats && yarn lint && yarn build",
+    "release:local": "npx semantic-release --dry-run=false",
+    "prettier": "prettier .",
     "format": "npm run prettier -- --write",
-    "prettier": "prettier --ignore-path .gitignore .",
+    "check-formats": "npm run prettier -- --list-different",
+    "validate": "npm run check-formats && npm run lint && npm run build",
+    "sh:files_to_copy": "chmod +x ./script/files_to_copy.sh && ./script/files_to_copy.sh",
+    "sh:files_to_delete": "chmod +x ./script/files_to_delete.sh && ./script/files_to_delete.sh",
     "submodule": "git submodule update --init --remote",
-    "files_to_copy": "chmod +x ./script/files_to_copy.sh && ./script/files_to_copy.sh",
-    "files_to_delete": "chmod +x ./script/files_to_delete.sh && ./script/files_to_delete.sh",
-    "preinstall": "npm run submodule",
-    "prepare": "npm run files_to_copy && husky install",
-    "release:local": "npx semantic-release --dry-run=false"
+    "clean": "npm run sh:files_to_delete && npm cache clean --force",
+    "preinstall": "npm run submodule && npm run sh:files_to_copy",
+    "prepare": "husky install"
   },
   "workspaces": [],
   "dependencies": {
