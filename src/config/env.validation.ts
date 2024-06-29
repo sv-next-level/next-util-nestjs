@@ -1,4 +1,3 @@
-import { Logger } from "@nestjs/common";
 import { plainToInstance } from "class-transformer";
 import {
   IsEnum,
@@ -8,6 +7,8 @@ import {
   validateSync,
   ValidationError,
 } from "class-validator";
+
+import { Logger } from "@nestjs/common";
 
 import { ENV } from "@/common/server/env";
 

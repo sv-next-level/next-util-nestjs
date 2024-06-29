@@ -1,7 +1,8 @@
+import { redisStore } from "cache-manager-redis-yet";
+
 import { CacheModule } from "@nestjs/cache-manager";
 import { Module } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { redisStore } from "cache-manager-redis-yet";
 
 import { REDIS_DB_CONNECTION } from "@/db/connection";
 import { RedisService } from "@/nestjs/db/redis/redis-config.service";

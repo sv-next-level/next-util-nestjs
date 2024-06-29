@@ -1,6 +1,7 @@
+import { Model } from "mongoose";
+
 import { Injectable, Logger } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
 
 import { MONGOOSE_DB_CONNECTION } from "@/nestjs/db/connection";
 import {

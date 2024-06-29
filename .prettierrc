@@ -14,6 +14,8 @@
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
     "",
+    "^@nestjs",
+    "",
     "^types$",
     "^@/types",
     "^@/config",
@@ -34,6 +36,8 @@
     "^@/nestjs",
     "",
     "^@/common",
+    "",
+    "^@/",
     "",
     "^[./]"
   ],

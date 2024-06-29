@@ -1,6 +1,7 @@
+import { catchError, lastValueFrom, map } from "rxjs";
+
 import { HttpService } from "@nestjs/axios";
 import { Injectable, Logger } from "@nestjs/common";
-import { catchError, lastValueFrom, map } from "rxjs";
 
 @Injectable()
 export class ApiService {
