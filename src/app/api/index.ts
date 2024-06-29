@@ -1,3 +1,3 @@
-export * from "./api.module";
-export * from "./api.service";
-export * from "./api.controller";
+export * from "@/nestjs/app/api/api.module";
+export * from "@/nestjs/app/api/api.service";
+export * from "@/nestjs/app/api/api.controller";

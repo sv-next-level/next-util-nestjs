@@ -1,14 +1,17 @@
 import { CONNECTION } from "@/common/db/mongo/connection";
 import { ModelDefinition } from "@nestjs/mongoose";
-import { USER_SCHEMA_NAME, UserSchema } from "./mongo/model/user.schema";
+import {
+  USER_SCHEMA_NAME,
+  UserSchema,
+} from "@/nestjs/db/mongo/model/user.schema";
 import {
   STUDENT_SCHEMA_NAME,
   StudentSchema,
-} from "./mongo/model/student.schema";
+} from "@/nestjs/db/mongo/model/student.schema";
 import {
   TEACHER_SCHEMA_NAME,
   TeacherSchema,
-} from "./mongo/model/teacher.schema";
+} from "@/nestjs/db/mongo/model/teacher.schema";
 
 export interface MongooseDbSchema {
   connectionName: string;

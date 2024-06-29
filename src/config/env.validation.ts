@@ -41,6 +41,10 @@ export function validate(config: Record<string, unknown>) {
       message: "Environment validation failed!",
     });
     throw new Error(JSON.stringify(errors));
+  } else {
+    logger.log({
+      message: "Environment validation successful!",
+    });
   }
 
   return validatedConfig;

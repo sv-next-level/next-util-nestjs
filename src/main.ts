@@ -7,7 +7,7 @@ import {
 import { NestFactory } from "@nestjs/core";
 import { ConfigService } from "@nestjs/config";
 
-import { AppModule } from "./app.module";
+import { AppModule } from "@/nestjs/app.module";
 
 const validationPipeOptions: ValidationPipeOptions = {
   transform: true,

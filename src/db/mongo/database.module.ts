@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 
 import { MONGOOSE_DB_CONNECTION } from "@/db/connection";
-import { createMongooseConfigServiceClass } from "./mongoose-config.service";
+import { createMongooseConfigServiceClass } from "@/nestjs/db/mongo/mongoose-config.service";
 
 @Module({
   imports: [

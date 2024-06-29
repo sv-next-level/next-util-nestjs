@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "CommonJS",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -18,7 +18,8 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@/*": ["./src/*"],
+      "@/db/*": ["./src/db/*"],
+      "@/nestjs/*": ["./src/*"],
       "@/common/*": ["./src/shared/common/ts/*"]
     }
   }

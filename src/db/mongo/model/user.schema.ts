@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { STUDENT_SCHEMA_NAME } from "./student.schema";
-import { TEACHER_SCHEMA_NAME } from "./teacher.schema";
+import { STUDENT_SCHEMA_NAME } from "@/nestjs/db/mongo/model/student.schema";
+import { TEACHER_SCHEMA_NAME } from "@/nestjs/db/mongo/model/teacher.schema";
 
 @Schema({
   timestamps: true,
