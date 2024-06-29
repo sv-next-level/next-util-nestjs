@@ -1,4 +1,5 @@
 import { registerAs } from "@nestjs/config";
+
 import { MONGOOSE_DB_CONNECTION } from "@/db/connection";
 
 export const MONGOOSE_DB_CONFIG = Object.values(MONGOOSE_DB_CONNECTION).map(
@@ -14,5 +15,5 @@ export const MONGOOSE_DB_CONFIG = Object.values(MONGOOSE_DB_CONNECTION).map(
         },
       };
     });
-  }
+  },
 );

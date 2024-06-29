@@ -1,12 +1,12 @@
-import {
-  MongooseOptionsFactory,
-  MongooseModuleOptions,
-} from "@nestjs/mongoose";
-import { ConfigService } from "@nestjs/config";
 import { Injectable, Type } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import {
+  MongooseModuleOptions,
+  MongooseOptionsFactory,
+} from "@nestjs/mongoose";
 
 export const createMongooseConfigServiceClass = (
-  connectionName: string
+  connectionName: string,
 ): Type<MongooseOptionsFactory> => {
   @Injectable()
   class MongooseConfigService implements MongooseOptionsFactory {

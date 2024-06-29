@@ -1,10 +1,10 @@
+import { CacheModule } from "@nestjs/cache-manager";
 import { Module } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { CacheModule } from "@nestjs/cache-manager";
 import { redisStore } from "cache-manager-redis-yet";
 
-import { RedisService } from "@/nestjs/db/redis/redis-config.service";
 import { REDIS_DB_CONNECTION } from "@/db/connection";
+import { RedisService } from "@/nestjs/db/redis/redis-config.service";
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import { REDIS_DB_CONNECTION } from "@/db/connection";
             }),
           }),
         });
-      }
+      },
     ),
   ],
 

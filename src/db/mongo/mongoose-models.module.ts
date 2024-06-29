@@ -9,7 +9,7 @@ import { MONGOOSE_DB_SCHEMA } from "@/db/connection";
     ...Object.entries(MONGOOSE_DB_SCHEMA).map(([connectionName, models]) => {
       return MongooseModule.forFeature(
         models as ModelDefinition[],
-        connectionName
+        connectionName,
       );
     }),
   ],

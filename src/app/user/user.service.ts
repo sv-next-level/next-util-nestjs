@@ -1,13 +1,13 @@
-import { Model } from "mongoose";
-import { InjectModel } from "@nestjs/mongoose";
 import { Injectable, Logger } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
 
+import { MONGOOSE_DB_CONNECTION } from "@/nestjs/db/connection";
 import {
   USER_SCHEMA_NAME,
   UserDocument,
-} from "../../db/mongo/model/user.schema";
-import { MONGOOSE_DB_CONNECTION } from "../../db/connection";
-import { RedisService } from "../../db/redis/redis-config.service";
+} from "@/nestjs/db/mongo/model/user.schema";
+import { RedisService } from "@/nestjs/db/redis/redis-config.service";
 
 @Injectable()
 export class UserService {
@@ -16,7 +16,7 @@ export class UserService {
   constructor(
     @InjectModel(USER_SCHEMA_NAME, MONGOOSE_DB_CONNECTION.MAIN)
     private readonly User: Model<UserDocument>,
-    private readonly Redis: RedisService
+    private readonly Redis: RedisService,
   ) {
     this.logger.debug({
       message: "Entering constructor of " + UserService.name,

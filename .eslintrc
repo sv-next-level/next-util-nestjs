@@ -1,28 +1,17 @@
 {
+  "$schema": "https://json.schemastore.org/eslintrc",
+  "root": true,
   "parserOptions": {
     "project": "tsconfig.json",
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint/eslint-plugin"],
-  "extends": [
-    "prettier",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
-  ],
-  "root": true,
+  "extends": ["prettier"],
   "env": {
     "node": true,
     "jest": true
   },
-  "parser": "@typescript-eslint/parser",
-  "ignorePatterns": [
-    ".eslintrc.json",
-    "db_migrations",
-    "coverage",
-    "jest.config.js",
-    "jest-mongodb-config.js"
-  ],
+  "ignorePatterns": [],
   "rules": {
     "require-await": "warn",
     "no-unused-vars": "off",
@@ -41,5 +30,11 @@
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-explicit-any": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser"
+    }
+  ]
 }

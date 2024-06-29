@@ -1,9 +1,5 @@
-import { CONNECTION } from "@/common/db/mongo/connection";
 import { ModelDefinition } from "@nestjs/mongoose";
-import {
-  USER_SCHEMA_NAME,
-  UserSchema,
-} from "@/nestjs/db/mongo/model/user.schema";
+
 import {
   STUDENT_SCHEMA_NAME,
   StudentSchema,
@@ -12,6 +8,12 @@ import {
   TEACHER_SCHEMA_NAME,
   TeacherSchema,
 } from "@/nestjs/db/mongo/model/teacher.schema";
+import {
+  USER_SCHEMA_NAME,
+  UserSchema,
+} from "@/nestjs/db/mongo/model/user.schema";
+
+import { CONNECTION } from "@/common/db/mongo/connection";
 
 export interface MongooseDbSchema {
   connectionName: string;

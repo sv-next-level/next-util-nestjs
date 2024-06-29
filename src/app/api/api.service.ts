@@ -37,7 +37,7 @@ export class ApiService {
               error: "API not available",
               data: null,
             };
-          })
+          }),
         );
 
       const res = await lastValueFrom(request);
