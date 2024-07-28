@@ -4,7 +4,12 @@ import { Module } from "@nestjs/common";
 import { ApiService } from ".";
 
 @Module({
-  imports: [HttpModule],
+  imports: [
+    HttpModule.register({
+      timeout: 5000,
+      maxRedirects: 5,
+    }),
+  ],
   providers: [ApiService],
   exports: [ApiService],
 })

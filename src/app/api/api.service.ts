@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { catchError, lastValueFrom, map } from "rxjs";
 
 import { HttpService } from "@nestjs/axios";
@@ -32,7 +33,9 @@ export class ApiService {
         })
         .pipe(map((res) => res.data))
         .pipe(
-          catchError(() => {
+          catchError((error: AxiosError) => {
+            this.logger.error(error.response.data);
+
             throw {
               statusCode: 401,
               error: "API not available",
