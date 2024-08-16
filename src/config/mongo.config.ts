@@ -6,12 +6,13 @@ export const MONGOOSE_DB_CONFIG = Object.values(MONGOOSE_DB_CONNECTION).map(
   (connectionName: string) => {
     return registerAs(connectionName, () => {
       return {
-        MONGODB_URI: process.env[`${connectionName}_MONGODB_URI`],
-        DATABASE_NAME: process.env[`${connectionName}_DATABASE_NAME`],
-        MONGODB_CONFIG: process.env[`${connectionName}_MONGODB_CONFIG`],
+        MONGO_URI: process.env[`${connectionName}_MONGO_URI`],
+        MONGO_DATABASE_NAME:
+          process.env[`${connectionName}_MONGO_DATABASE_NAME`],
+        MONGO_CONFIG: process.env[`${connectionName}_MONGO_CONFIG`],
 
         get dbUri() {
-          return `${this.MONGODB_URI}/${this.DATABASE_NAME}?${this.MONGODB_CONFIG}`;
+          return `${this.MONGO_URI}/${this.MONGO_DATABASE_NAME}?${this.MONGO_CONFIG}`;
         },
       };
     });
