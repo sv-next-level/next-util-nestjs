@@ -5,7 +5,7 @@ import { Module } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 
 import { REDIS_DB_CONNECTION } from "@/db/connection";
-import { RedisService } from "@/nestjs/db/redis/redis-config.service";
+import { RedisService } from "@/nestjs/db/redis/config.service";
 
 @Module({
   imports: [

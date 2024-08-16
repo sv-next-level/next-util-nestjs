@@ -9,7 +9,7 @@ import { UserController } from "@/nestjs/app/user/user.controller";
 import { UserService } from "@/nestjs/app/user/user.service";
 
 import { MongooseDatabaseModule } from "@/nestjs/db/mongo/database.module";
-import { MongooseModelsModule } from "@/nestjs/db/mongo/mongoose-models.module";
+import { MongooseModelsModule } from "@/nestjs/db/mongo/models.module";
 import { RedisDatabaseModule } from "@/nestjs/db/redis/database.module";
 
 import { AppController } from "@/nestjs/app.controller";

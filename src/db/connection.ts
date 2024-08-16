@@ -20,12 +20,16 @@ export interface MongooseDbSchema {
   models: ModelDefinition[];
 }
 
-export enum MONGOOSE_DB_CONNECTION {
+export enum MONGO_DB_CONNECTION {
   MAIN = CONNECTION.TEST_CONN_MAIN,
 }
 
+export enum POSTGRES_DB_CONNECTION {
+  MAIN = CONNECTION.TEST_CONN_MAIN + "N",
+}
+
 export const MONGOOSE_DB_SCHEMA = {
-  [MONGOOSE_DB_CONNECTION.MAIN]: [
+  [MONGO_DB_CONNECTION.MAIN]: [
     {
       // default collection name
       name: USER_SCHEMA_NAME,

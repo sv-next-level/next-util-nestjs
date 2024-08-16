@@ -3,19 +3,19 @@ import { Model } from "mongoose";
 import { Injectable, Logger } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 
-import { MONGOOSE_DB_CONNECTION } from "@/nestjs/db/connection";
+import { MONGO_DB_CONNECTION } from "@/nestjs/db/connection";
 import {
   USER_SCHEMA_NAME,
   UserDocument,
 } from "@/nestjs/db/mongo/model/user.schema";
-import { RedisService } from "@/nestjs/db/redis/redis-config.service";
+import { RedisService } from "@/nestjs/db/redis/config.service";
 
 @Injectable()
 export class UserService {
   private logger: Logger = new Logger(UserService.name);
 
   constructor(
-    @InjectModel(USER_SCHEMA_NAME, MONGOOSE_DB_CONNECTION.MAIN)
+    @InjectModel(USER_SCHEMA_NAME, MONGO_DB_CONNECTION.MAIN)
     private readonly User: Model<UserDocument>,
     private readonly Redis: RedisService,
   ) {
