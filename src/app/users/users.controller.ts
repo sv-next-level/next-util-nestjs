@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Logger, Post, Version } from "@nestjs/common";
 import {
   ApiBadRequestResponse,
-  ApiBody,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -67,22 +66,6 @@ export class UsersController {
   @ApiBadRequestResponse({
     status: 400,
     description: "name should not be empty!",
-  })
-  @ApiBody({
-    required: true,
-    isArray: false,
-    description: "Request body description",
-    schema: {
-      properties: {
-        name: { type: "string" },
-      },
-      required: ["name"],
-      type: "object",
-      example: {
-        name: "John Doe",
-      },
-      title: "Create new user",
-    },
   })
   async create(@Body() createUsersDto: CreateUsersDto) {
     try {
