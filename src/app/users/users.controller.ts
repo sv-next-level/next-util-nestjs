@@ -1,26 +1,27 @@
 import { Body, Controller, Get, Logger, Post } from "@nestjs/common";
 
-import { UserDocument } from "@/nestjs/app/user/entity/user.entity";
-import { UserService } from "@/nestjs/app/user/user.service";
+import { CreateUsersDto } from "@/nestjs/app/users/dto/create-user.dto";
+import { UserDocument } from "@/nestjs/app/users/entity/users.entity";
+import { UsersService } from "@/nestjs/app/users/users.service";
 
-@Controller("user")
-export class UserController {
-  private logger: Logger = new Logger(UserController.name);
+@Controller("users")
+export class UsersController {
+  private logger: Logger = new Logger(UsersController.name);
 
-  constructor(private readonly userService: UserService) {
+  constructor(private readonly usersService: UsersService) {
     this.logger.debug({
-      message: "Entering constructor of " + UserController.name,
+      message: "Entering constructor of " + UsersController.name,
     });
   }
 
   @Get()
-  async get(): Promise<any> {
+  async getAll() {
     try {
       this.logger.debug({
         message: "Entering get route",
       });
 
-      const users: any = await this.userService.get();
+      const users: any = await this.usersService.getAll();
       this.logger.log({
         message: "After getting users",
         users_length: users.length,
@@ -33,7 +34,7 @@ export class UserController {
       };
     } catch (error) {
       this.logger.error({
-        message: "Error getting todos",
+        message: "Error getting users",
         error: error,
       });
       return {
@@ -45,15 +46,15 @@ export class UserController {
   }
 
   @Post()
-  async set(@Body() userData: any): Promise<any> {
+  async create(@Body() createUsersDto: CreateUsersDto) {
     try {
       this.logger.debug({
-        message: "Entering set user route",
-        userData: userData,
+        message: "Entering create user route",
+        createUsersDto: createUsersDto,
       });
-      const user: UserDocument = await this.userService.set(userData);
+      const user: UserDocument = await this.usersService.create(createUsersDto);
       this.logger.log({
-        message: "After set user",
+        message: "After creating user",
         id: user._id,
       });
 
@@ -64,7 +65,7 @@ export class UserController {
       };
     } catch (error) {
       this.logger.error({
-        message: "Error set user",
+        message: "Error creating user",
         error: error,
       });
       return {

@@ -1,23 +1,90 @@
 import { eq } from "drizzle-orm";
 
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable, Logger, NotFoundException } from "@nestjs/common";
 
 import { CreateArticleDto } from "@/nestjs/app/articles/dto/create-article.dto";
 import { UpdateArticleDto } from "@/nestjs/app/articles/dto/update-article.dto";
 import { articles as articlesEntity } from "@/nestjs/app/articles/entity/articles.entity";
 
-import { DrizzleService } from "@/db/postgres/drizzle/drizzle.service";
+import { DrizzleService } from "@/nestjs/db/postgres/drizzle/drizzle.service";
+import { RedisService } from "@/nestjs/db/redis/config.service";
 
 @Injectable()
 export class ArticlesService {
-  constructor(private readonly drizzleService: DrizzleService) {}
+  private logger: Logger = new Logger(ArticlesService.name);
 
-  getAll() {
-    return this.drizzleService.db.select().from(articlesEntity);
+  constructor(
+    private readonly Redis: RedisService,
+    private readonly drizzle: DrizzleService,
+  ) {
+    this.logger.debug({
+      message: "Entering constructor of " + ArticlesService.name,
+    });
+  }
+
+  async getAll() {
+    try {
+      this.logger.debug({
+        message: "Entering getAll of " + ArticlesService.name,
+      });
+
+      let articles = await this.Redis.get("articles");
+      if (articles) {
+        this.logger.log({
+          message: "get redis response",
+          articles: articles,
+        });
+        return articles;
+      }
+
+      articles = await this.drizzle.db.select().from(articlesEntity);
+      this.logger.log({
+        message: "get postgres response",
+        articles: articles,
+      });
+
+      await this.Redis.set("articles", articles, 10);
+
+      return articles;
+    } catch (err) {
+      this.logger.error({
+        error: err.message,
+      });
+      throw err;
+    }
+  }
+
+  async create(newArticle: CreateArticleDto) {
+    try {
+      this.logger.debug({
+        message: "Entering create of " + ArticlesService.name,
+        article: newArticle,
+      });
+
+      const createdArticles = await this.drizzle.db
+        .insert(articlesEntity)
+        .values(newArticle)
+        .returning();
+
+      const article = createdArticles.pop();
+
+      this.logger.log({
+        message: "create response",
+        article: article,
+      });
+
+      return article;
+    } catch (err) {
+      this.logger.error({
+        error: err.message,
+        article: newArticle,
+      });
+      throw err;
+    }
   }
 
   async getById(id: number) {
-    const articles = await this.drizzleService.db
+    const articles = await this.drizzle.db
       .select()
       .from(articlesEntity)
       .where(eq(articlesEntity.id, id));
@@ -28,17 +95,8 @@ export class ArticlesService {
     return article;
   }
 
-  async create(article: CreateArticleDto) {
-    const createdArticles = await this.drizzleService.db
-      .insert(articlesEntity)
-      .values(article)
-      .returning();
-
-    return createdArticles.pop();
-  }
-
   async update(id: number, article: UpdateArticleDto) {
-    const updatedArticles = await this.drizzleService.db
+    const updatedArticles = await this.drizzle.db
       .update(articlesEntity)
       .set(article)
       .where(eq(articlesEntity.id, id))
@@ -52,7 +110,7 @@ export class ArticlesService {
   }
 
   async delete(id: number) {
-    const deletedArticles = await this.drizzleService.db
+    const deletedArticles = await this.drizzle.db
       .delete(articlesEntity)
       .where(eq(articlesEntity.id, id))
       .returning();

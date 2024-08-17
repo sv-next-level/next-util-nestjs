@@ -1,47 +1,78 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  ParseIntPipe,
-  Patch,
-  Post,
-} from "@nestjs/common";
+import { Body, Controller, Get, Logger, Post } from "@nestjs/common";
 
 import { ArticlesService } from "@/nestjs/app/articles/articles.service";
 import { CreateArticleDto } from "@/nestjs/app/articles/dto/create-article.dto";
-import { UpdateArticleDto } from "@/nestjs/app/articles/dto/update-article.dto";
 
 @Controller("articles")
 export class ArticlesController {
-  constructor(private readonly articlesService: ArticlesService) {}
+  private logger: Logger = new Logger(ArticlesController.name);
 
-  @Get()
-  getAll() {
-    return this.articlesService.getAll();
+  constructor(private readonly articlesService: ArticlesService) {
+    this.logger.debug({
+      message: "Entering constructor of " + ArticlesController.name,
+    });
   }
 
-  @Get(":id")
-  getById(@Param("id", ParseIntPipe) id: number) {
-    return this.articlesService.getById(id);
+  @Get()
+  async getAll() {
+    try {
+      this.logger.debug({
+        message: "Entering get route",
+      });
+
+      const articles: any = await this.articlesService.getAll();
+      this.logger.log({
+        message: "After getting articles",
+        articles_length: articles.length,
+      });
+
+      return {
+        statusCode: 200,
+        success: true,
+        data: articles,
+      };
+    } catch (error) {
+      this.logger.error({
+        message: "Error getting articles",
+        error: error,
+      });
+      return {
+        statusCode: 500,
+        success: false,
+        error: error.message,
+      };
+    }
   }
 
   @Post()
-  create(@Body() article: CreateArticleDto) {
-    return this.articlesService.create(article);
-  }
+  async create(@Body() createArticleDto: CreateArticleDto) {
+    try {
+      this.logger.debug({
+        message: "Entering create article route",
+        createArticleDto: createArticleDto,
+      });
 
-  @Patch(":id")
-  update(
-    @Param("id", ParseIntPipe) id: number,
-    @Body() article: UpdateArticleDto,
-  ) {
-    return this.articlesService.update(id, article);
-  }
+      const article = await this.articlesService.create(createArticleDto);
+      this.logger.log({
+        message: "After creating article",
+        id: article.id,
+      });
 
-  @Delete(":id")
-  async delete(@Param("id", ParseIntPipe) id: number) {
-    await this.articlesService.delete(id);
+      return {
+        statusCode: 200,
+        success: true,
+        data: article,
+      };
+    } catch (error) {
+      this.logger.error({
+        message: "Error creating article",
+        error: error,
+      });
+      return {
+        statusCode: 500,
+        success: false,
+        error: error.message,
+      };
+    }
   }
 }

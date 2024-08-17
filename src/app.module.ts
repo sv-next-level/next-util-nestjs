@@ -5,6 +5,7 @@ import configuration, { validate } from "@/nestjs/config";
 
 import { ApiModule } from "@/nestjs/app/api/api.module";
 import { ArticlesModule } from "@/nestjs/app/articles/articles.module";
+import { UsersModule } from "@/nestjs/app/users/users.module";
 
 import { MongooseDatabaseModule } from "@/nestjs/db/mongo/database.module";
 import { MongooseModelsModule } from "@/nestjs/db/mongo/models.module";
@@ -13,8 +14,6 @@ import { RedisDatabaseModule } from "@/nestjs/db/redis/database.module";
 
 import { AppController } from "@/nestjs/app.controller";
 import { AppService } from "@/nestjs/app.service";
-
-import { UserModule } from "./app/user/user.module";
 
 @Module({
   imports: [
@@ -27,7 +26,7 @@ import { UserModule } from "./app/user/user.module";
     }),
     ApiModule,
     ArticlesModule,
-    UserModule,
+    UsersModule,
     RedisDatabaseModule,
     MongooseModelsModule,
     MongooseDatabaseModule,

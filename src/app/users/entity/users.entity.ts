@@ -2,7 +2,6 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema({
   timestamps: true,
-  discriminatorKey: "kind",
 })
 export class User {
   @Prop({

@@ -8,6 +8,13 @@
       "when": 1723912685194,
       "tag": "0000_create-articles-table",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1723923762086,
+      "tag": "0001_solid_dragon_man",
+      "breakpoints": true
     }
   ]
 }
