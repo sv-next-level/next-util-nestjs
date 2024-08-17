@@ -4,7 +4,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 import {
   USER_SCHEMA_NAME,
   UserSchema,
-} from "@/nestjs/app/users/entity/users.entity";
+} from "@/nestjs/app/users/entities/users.entity";
 import { UsersController } from "@/nestjs/app/users/users.controller";
 import { UsersService } from "@/nestjs/app/users/users.service";
 

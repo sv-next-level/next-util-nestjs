@@ -1,9 +1,17 @@
 import { Body, Controller, Get, Logger, Post, Version } from "@nestjs/common";
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 
 import { CreateUsersDto } from "@/nestjs/app/users/dto/create-user.dto";
-import { UserDocument } from "@/nestjs/app/users/entity/users.entity";
+import { UserDocument } from "@/nestjs/app/users/entities/users.entity";
 import { UsersService } from "@/nestjs/app/users/users.service";
 
+@ApiTags("Users")
 @Controller({
   path: "users",
 })
@@ -18,6 +26,9 @@ export class UsersController {
 
   @Version("1")
   @Get()
+  @ApiOperation({ summary: "Get all users" })
+  @ApiResponse({ status: 200, description: "All users list." })
+  @ApiResponse({ status: 500, description: "Something went wrong!" })
   async getAll() {
     try {
       this.logger.debug({
@@ -50,6 +61,29 @@ export class UsersController {
 
   @Version("1")
   @Post()
+  @ApiOperation({ summary: "Create new user" })
+  @ApiResponse({ status: 200, description: "Created user." })
+  @ApiResponse({ status: 500, description: "Something went wrong!" })
+  @ApiBadRequestResponse({
+    status: 400,
+    description: "name should not be empty!",
+  })
+  @ApiBody({
+    required: true,
+    isArray: false,
+    description: "Request body description",
+    schema: {
+      properties: {
+        name: { type: "string" },
+      },
+      required: ["name"],
+      type: "object",
+      example: {
+        name: "John Doe",
+      },
+      title: "Create new user",
+    },
+  })
   async create(@Body() createUsersDto: CreateUsersDto) {
     try {
       this.logger.debug({

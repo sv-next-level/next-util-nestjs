@@ -7,7 +7,7 @@ import { CreateUsersDto } from "@/nestjs/app/users/dto/create-user.dto";
 import {
   USER_SCHEMA_NAME,
   UserDocument,
-} from "@/nestjs/app/users/entity/users.entity";
+} from "@/nestjs/app/users/entities/users.entity";
 
 import { MONGO_DB_CONNECTION } from "@/nestjs/db/connection";
 import { RedisService } from "@/nestjs/db/redis/config.service";

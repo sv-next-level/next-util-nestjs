@@ -4,7 +4,7 @@ import { Injectable, Logger, NotFoundException } from "@nestjs/common";
 
 import { CreateArticleDto } from "@/nestjs/app/articles/dto/create-article.dto";
 import { UpdateArticleDto } from "@/nestjs/app/articles/dto/update-article.dto";
-import { articles as articlesEntity } from "@/nestjs/app/articles/entity/articles.entity";
+import { articles as articlesEntity } from "@/nestjs/app/articles/entities/articles.entity";
 
 import { DrizzleService } from "@/nestjs/db/postgres/drizzle/drizzle.service";
 import { RedisService } from "@/nestjs/db/redis/config.service";

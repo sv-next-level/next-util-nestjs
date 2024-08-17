@@ -1,6 +1,4 @@
-import { ModelDefinition } from "@nestjs/mongoose";
-
-import { articles } from "@/nestjs/app/articles/entity/articles.entity";
+import { articles } from "@/nestjs/app/articles/entities/articles.entity";
 
 // import {
 //   USER_SCHEMA_NAME,

@@ -1,8 +1,16 @@
 import { Body, Controller, Get, Logger, Post, Version } from "@nestjs/common";
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 
 import { ArticlesService } from "@/nestjs/app/articles/articles.service";
 import { CreateArticleDto } from "@/nestjs/app/articles/dto/create-article.dto";
 
+@ApiTags("Articles")
 @Controller({
   path: "articles",
 })
@@ -17,6 +25,9 @@ export class ArticlesController {
 
   @Version("1")
   @Get()
+  @ApiOperation({ summary: "Get all articles" })
+  @ApiResponse({ status: 200, description: "All articles list." })
+  @ApiResponse({ status: 500, description: "Something went wrong!" })
   async getAll() {
     try {
       this.logger.debug({
@@ -49,6 +60,29 @@ export class ArticlesController {
 
   @Version("1")
   @Post()
+  @ApiOperation({ summary: "Create new article" })
+  @ApiResponse({ status: 200, description: "Created article." })
+  @ApiResponse({ status: 500, description: "Something went wrong!" })
+  @ApiBadRequestResponse({
+    status: 400,
+    description: "name should not be empty!",
+  })
+  @ApiBody({
+    required: true,
+    isArray: false,
+    description: "Request body description",
+    schema: {
+      properties: {
+        name: { type: "string" },
+      },
+      required: ["name"],
+      type: "object",
+      example: {
+        name: "John Doe",
+      },
+      title: "Create new article",
+    },
+  })
   async create(@Body() createArticleDto: CreateArticleDto) {
     try {
       this.logger.debug({
