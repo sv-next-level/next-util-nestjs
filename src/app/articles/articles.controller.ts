@@ -1,9 +1,11 @@
-import { Body, Controller, Get, Logger, Post } from "@nestjs/common";
+import { Body, Controller, Get, Logger, Post, Version } from "@nestjs/common";
 
 import { ArticlesService } from "@/nestjs/app/articles/articles.service";
 import { CreateArticleDto } from "@/nestjs/app/articles/dto/create-article.dto";
 
-@Controller("articles")
+@Controller({
+  path: "articles",
+})
 export class ArticlesController {
   private logger: Logger = new Logger(ArticlesController.name);
 
@@ -13,6 +15,7 @@ export class ArticlesController {
     });
   }
 
+  @Version("1")
   @Get()
   async getAll() {
     try {
@@ -44,6 +47,7 @@ export class ArticlesController {
     }
   }
 
+  @Version("1")
   @Post()
   async create(@Body() createArticleDto: CreateArticleDto) {
     try {

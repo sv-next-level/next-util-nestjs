@@ -1,10 +1,12 @@
-import { Body, Controller, Get, Logger, Post } from "@nestjs/common";
+import { Body, Controller, Get, Logger, Post, Version } from "@nestjs/common";
 
 import { CreateUsersDto } from "@/nestjs/app/users/dto/create-user.dto";
 import { UserDocument } from "@/nestjs/app/users/entity/users.entity";
 import { UsersService } from "@/nestjs/app/users/users.service";
 
-@Controller("users")
+@Controller({
+  path: "users",
+})
 export class UsersController {
   private logger: Logger = new Logger(UsersController.name);
 
@@ -14,6 +16,7 @@ export class UsersController {
     });
   }
 
+  @Version("1")
   @Get()
   async getAll() {
     try {
@@ -45,6 +48,7 @@ export class UsersController {
     }
   }
 
+  @Version("1")
   @Post()
   async create(@Body() createUsersDto: CreateUsersDto) {
     try {
