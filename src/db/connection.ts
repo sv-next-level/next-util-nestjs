@@ -9,11 +9,6 @@ import { articles } from "@/nestjs/app/articles/entity/articles.entity";
 
 import { CONNECTION } from "@/common/db/mongo/connection";
 
-export interface MongooseDbSchema {
-  connectionName: string;
-  models: ModelDefinition[];
-}
-
 export enum MONGO_DB_CONNECTION {
   MAIN = CONNECTION.TEST_CONN_MAIN,
 }
