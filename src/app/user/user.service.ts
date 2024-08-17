@@ -3,11 +3,12 @@ import { Model } from "mongoose";
 import { Injectable, Logger } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 
-import { MONGO_DB_CONNECTION } from "@/nestjs/db/connection";
 import {
   USER_SCHEMA_NAME,
   UserDocument,
-} from "@/nestjs/db/mongo/model/user.schema";
+} from "@/nestjs/app/user/entity/user.entity";
+
+import { MONGO_DB_CONNECTION } from "@/nestjs/db/connection";
 import { RedisService } from "@/nestjs/db/redis/config.service";
 
 @Injectable()
