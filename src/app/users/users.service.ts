@@ -3,6 +3,7 @@ import { Model } from "mongoose";
 import { Injectable, Logger } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 
+import { CreateUsersDto } from "@/nestjs/app/users/dto/create-user.dto";
 import {
   USER_SCHEMA_NAME,
   UserDocument,
@@ -10,8 +11,6 @@ import {
 
 import { MONGO_DB_CONNECTION } from "@/nestjs/db/connection";
 import { RedisService } from "@/nestjs/db/redis/config.service";
-
-import { CreateUsersDto } from "./dto/create-user.dto";
 
 @Injectable()
 export class UsersService {
