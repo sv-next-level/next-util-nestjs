@@ -5,6 +5,7 @@ import configuration, { validate } from "@/nestjs/config";
 
 import { ApiModule } from "@/nestjs/app/api/api.module";
 import { ArticlesModule } from "@/nestjs/app/articles/articles.module";
+import { CipherModule } from "@/nestjs/app/cipher/cipher.module";
 import { UsersModule } from "@/nestjs/app/users/users.module";
 
 import { MongooseDatabaseModule } from "@/nestjs/db/mongo/database.module";
@@ -27,6 +28,7 @@ import { AppService } from "@/nestjs/app.service";
     ApiModule,
     ArticlesModule,
     UsersModule,
+    CipherModule,
     RedisDatabaseModule,
     MongooseModelsModule,
     MongooseDatabaseModule,
