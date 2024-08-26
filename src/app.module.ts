@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 
 import configuration, { validate } from "@/nestjs/config";
+import { SECRET_CONFIG } from "@/nestjs/config/secret.config";
 
 import { ApiModule } from "@/nestjs/app/api/api.module";
 import { ArticlesModule } from "@/nestjs/app/articles/articles.module";
@@ -19,7 +20,7 @@ import { AppService } from "@/nestjs/app.service";
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: configuration,
+      load: [SECRET_CONFIG, ...configuration],
       expandVariables: true,
       isGlobal: true,
       cache: true,
