@@ -1,8 +1,8 @@
-import { articles } from "@/nestjs/app/articles/entities/articles.entity";
+import { Article } from "@/nestjs/app/articles/entities/article.drizzle.entity";
 
 // import {
-//   USER_SCHEMA_NAME,
-//   UserSchema,
+//   USER_ENTITY_NAME,
+//   UserEntity,
 // } from "@/nestjs/app/user/entity/user.entity";
 
 import { CONNECTION } from "@/common/db/mongo/connection";
@@ -14,20 +14,22 @@ export enum MONGO_DB_CONNECTION {
 export enum POSTGRES_DB_CONNECTION {
   MAIN = CONNECTION.TEST_CONN_MAIN + "N",
 }
+
 export const POSTGRES_DB_SCHEMA = {
-  articles,
+  Article,
 };
+
 export const POSTGRES_DB_SCHEMA_PATH = [
-  "./src/app/articles/entity/articles.entity.ts",
+  "./src/app/articles/entity/**.drizzle.entity.ts",
 ];
 
 export const MONGOOSE_DB_SCHEMA = {
   // [MONGO_DB_CONNECTION.MAIN]: [
   //   {
   //     // default collection name
-  //     name: USER_SCHEMA_NAME,
+  //     name: USER_ENTITY_NAME,
   //     // Schema instance
-  //     schema: UserSchema,
+  //     schema: UserEntity,
   //     // name of the collection [override default name]
   //     collection: "all_users",
   //     // if there else []

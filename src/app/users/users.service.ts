@@ -5,9 +5,9 @@ import { InjectModel } from "@nestjs/mongoose";
 
 import { CreateUsersDto } from "@/nestjs/app/users/dto/create-user.dto";
 import {
-  USER_SCHEMA_NAME,
+  USER_ENTITY_NAME,
   UserDocument,
-} from "@/nestjs/app/users/entities/users.entity";
+} from "@/nestjs/app/users/entities/user.mongo.entity";
 
 import { MONGO_DB_CONNECTION } from "@/nestjs/db/connection";
 import { RedisService } from "@/nestjs/db/redis/config.service";
@@ -17,7 +17,7 @@ export class UsersService {
   private logger: Logger = new Logger(UsersService.name);
 
   constructor(
-    @InjectModel(USER_SCHEMA_NAME, MONGO_DB_CONNECTION.MAIN)
+    @InjectModel(USER_ENTITY_NAME, MONGO_DB_CONNECTION.MAIN)
     private readonly User: Model<UserDocument>,
     private readonly Redis: RedisService,
   ) {

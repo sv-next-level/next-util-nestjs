@@ -11,7 +11,7 @@ import { UsersModule } from "@/nestjs/app/users/users.module";
 
 import { MongooseDatabaseModule } from "@/nestjs/db/mongo/database.module";
 import { MongooseModelsModule } from "@/nestjs/db/mongo/models.module";
-import { DrizzleDatabaseModule } from "@/nestjs/db/postgres/drizzle/database.module";
+import { DrizzleDatabaseModule } from "@/nestjs/db/postgres/drizzle/drizzle.module";
 import { RedisDatabaseModule } from "@/nestjs/db/redis/database.module";
 
 import { AppController } from "@/nestjs/app.controller";

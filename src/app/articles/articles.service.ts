@@ -4,7 +4,7 @@ import { Injectable, Logger, NotFoundException } from "@nestjs/common";
 
 import { CreateArticleDto } from "@/nestjs/app/articles/dto/create-article.dto";
 import { UpdateArticleDto } from "@/nestjs/app/articles/dto/update-article.dto";
-import { articles as articlesEntity } from "@/nestjs/app/articles/entities/articles.entity";
+import { Article } from "@/nestjs/app/articles/entities/article.drizzle.entity";
 
 import { DrizzleService } from "@/nestjs/db/postgres/drizzle/drizzle.service";
 import { RedisService } from "@/nestjs/db/redis/config.service";
@@ -15,7 +15,7 @@ export class ArticlesService {
 
   constructor(
     private readonly Redis: RedisService,
-    private readonly drizzle: DrizzleService,
+    private readonly Drizzle: DrizzleService,
   ) {
     this.logger.debug({
       message: "Entering constructor of " + ArticlesService.name,
@@ -37,7 +37,7 @@ export class ArticlesService {
         return articles;
       }
 
-      articles = await this.drizzle.db.select().from(articlesEntity);
+      articles = await this.Drizzle.db.select().from(Article);
       this.logger.log({
         message: "get postgres response",
         articles: articles,
@@ -61,8 +61,8 @@ export class ArticlesService {
         article: newArticle,
       });
 
-      const createdArticles = await this.drizzle.db
-        .insert(articlesEntity)
+      const createdArticles = await this.Drizzle.db
+        .insert(Article)
         .values(newArticle)
         .returning();
 
@@ -84,10 +84,10 @@ export class ArticlesService {
   }
 
   async getById(id: number) {
-    const articles = await this.drizzle.db
+    const articles = await this.Drizzle.db
       .select()
-      .from(articlesEntity)
-      .where(eq(articlesEntity.id, id));
+      .from(Article)
+      .where(eq(Article.id, id));
     const article = articles.pop();
     if (!article) {
       throw new NotFoundException();
@@ -96,10 +96,10 @@ export class ArticlesService {
   }
 
   async update(id: number, article: UpdateArticleDto) {
-    const updatedArticles = await this.drizzle.db
-      .update(articlesEntity)
+    const updatedArticles = await this.Drizzle.db
+      .update(Article)
       .set(article)
-      .where(eq(articlesEntity.id, id))
+      .where(eq(Article.id, id))
       .returning();
 
     if (updatedArticles.length === 0) {
@@ -110,9 +110,9 @@ export class ArticlesService {
   }
 
   async delete(id: number) {
-    const deletedArticles = await this.drizzle.db
-      .delete(articlesEntity)
-      .where(eq(articlesEntity.id, id))
+    const deletedArticles = await this.Drizzle.db
+      .delete(Article)
+      .where(eq(Article.id, id))
       .returning();
 
     if (deletedArticles.length === 0) {

@@ -7,7 +7,7 @@ import {
 } from "@nestjs/swagger";
 
 import { CreateUsersDto } from "@/nestjs/app/users/dto/create-user.dto";
-import { UserDocument } from "@/nestjs/app/users/entities/users.entity";
+import { UserDocument } from "@/nestjs/app/users/entities/user.mongo.entity";
 import { UsersService } from "@/nestjs/app/users/users.service";
 
 @ApiTags("Users")

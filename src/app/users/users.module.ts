@@ -2,9 +2,9 @@ import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 
 import {
-  USER_SCHEMA_NAME,
-  UserSchema,
-} from "@/nestjs/app/users/entities/users.entity";
+  USER_ENTITY_NAME,
+  UserEntity,
+} from "@/nestjs/app/users/entities/user.mongo.entity";
 import { UsersController } from "@/nestjs/app/users/users.controller";
 import { UsersService } from "@/nestjs/app/users/users.service";
 
@@ -14,7 +14,7 @@ import { RedisDatabaseModule } from "@/nestjs/db/redis/database.module";
 @Module({
   imports: [
     MongooseModule.forFeature(
-      [{ name: USER_SCHEMA_NAME, schema: UserSchema }],
+      [{ name: USER_ENTITY_NAME, schema: UserEntity }],
       MONGO_DB_CONNECTION.MAIN,
     ),
     RedisDatabaseModule,

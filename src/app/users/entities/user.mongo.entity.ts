@@ -19,8 +19,8 @@ export class User {
   name: string;
 }
 
-export const USER_SCHEMA_NAME: string = User.name;
+export const USER_ENTITY_NAME: string = User.name;
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const UserEntity = SchemaFactory.createForClass(User);
 
 export type UserDocument = User & Document & { _id: string };
