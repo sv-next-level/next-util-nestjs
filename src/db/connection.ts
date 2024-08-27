@@ -20,7 +20,7 @@ export const POSTGRES_DB_SCHEMA = {
 };
 
 export const POSTGRES_DB_SCHEMA_PATH = [
-  "./src/app/articles/entity/**.drizzle.entity.ts",
+  "./src/app/articles/entities/**.drizzle.entity.ts",
 ];
 
 export const MONGOOSE_DB_SCHEMA = {
