@@ -5,14 +5,15 @@ import { Article } from "@/nestjs/app/articles/entities/article.drizzle.entity";
 //   UserEntity,
 // } from "@/nestjs/app/user/entity/user.entity";
 
-import { CONNECTION } from "@/common/db/mongo/connection";
+import { CONNECTION as MG_CONNECTION } from "@/common/db/mongo/connection";
+import { CONNECTION as PG_CONNECTION } from "@/common/db/postgres/connection";
 
 export enum MONGO_DB_CONNECTION {
-  MAIN = CONNECTION.TEST_CONN_MAIN,
+  MAIN = MG_CONNECTION.TEST_CONN_MAIN,
 }
 
 export enum POSTGRES_DB_CONNECTION {
-  MAIN = CONNECTION.TEST_CONN_MAIN + "N",
+  MAIN = PG_CONNECTION.TEST_CONN_MAIN,
 }
 
 export const POSTGRES_DB_SCHEMA = {
@@ -39,5 +40,5 @@ export const MONGOOSE_DB_SCHEMA = {
 };
 
 export enum REDIS_DB_CONNECTION {
-  MAIN = CONNECTION.TEST_CONN_MAIN,
+  MAIN = MG_CONNECTION.TEST_CONN_MAIN,
 }
